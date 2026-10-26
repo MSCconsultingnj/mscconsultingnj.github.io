@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="MSC International LLC · Multi Service Consulting. Diseño web, redes sociales, inteligencia artificial y orientación administrativa en Elizabeth, New Jersey.">
+<title>MSC International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: héroe dividido (texto + ilustración con tarjetas flotantes); demostraciones vivas por servicio; pestañas para sectores y Nosotros; panel de muestra y mapa de tráfico. */
+:root{
+  --bg:#F5F7FB; --surface:#FFFFFF; --ink:#13202E; --muted:#56667B; --line:#DCE3EC; --soft:#EAF0F7;
+  --navy:#0B3D6E; --navy-2:#0F4C86; --amber:#D98B1C; --amber-2:#F2B455; --amber-ink:#1B1204;
+  --link:#0B3D6E; --ok:#1E8E5A;
+  --hero:#0B3D6E; --hero-2:#082D52; --hero-ink:#FFFFFF; --hero-muted:#C9D8EA;
+  --chart:#0F4C86; --chart-2:#D98B1C; --grid:#E3E9F1;
+  --mark-bg:#0B3D6E; --mark-fg:#FFFFFF;
+  --f-display:'Schibsted Grotesk','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  --f-body:'Source Sans 3','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1520; --surface:#122131; --ink:#E7EDF5; --muted:#9FB1C6; --line:#22364B; --soft:#0F1D2C;
+  --link:#8DBDEB; --chart:#7FB2E5; --grid:#1E3145; --hero:#0A2F55; --hero-2:#071F38;
+  --mark-bg:#FFFFFF; --mark-fg:#0B3D6E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1520; --surface:#122131; --ink:#E7EDF5; --muted:#9FB1C6; --line:#22364B; --soft:#0F1D2C;
+  --link:#8DBDEB; --chart:#7FB2E5; --grid:#1E3145; --hero:#0A2F55; --hero-2:#071F38;
+  --mark-bg:#FFFFFF; --mark-fg:#0B3D6E; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+a{color:var(--link)}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.12;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- barra ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:50}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);flex:none}
+.brand svg{width:38px;height:38px}
+.brand b{display:block;font-family:var(--f-display);font-size:19px;letter-spacing:.02em;line-height:1}
+.brand small{display:block;font-size:10.5px;letter-spacing:.2em;color:var(--muted);margin-top:3px}
+nav.main{display:flex;gap:20px}
+nav.main a{text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+nav.main a:hover{color:var(--link)}
+.tools{display:flex;align-items:center;gap:8px}
+.soc{display:flex;gap:4px}
+.soc a{width:34px;height:34px;display:grid;place-items:center;border-radius:8px;color:var(--ink)}
+.soc a:hover{background:var(--soft);color:var(--link)}
+.soc svg{width:18px;height:18px;fill:currentColor}
+.lang{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:6px 11px;font:700 13px var(--f-body);cursor:pointer}
+@media(max-width:1020px){nav.main{display:none}}
+@media(max-width:520px){.top .soc{display:none}}
+
+/* ---------- héroe ---------- */
+.hero{background:radial-gradient(1200px 500px at 85% 20%,var(--navy-2),transparent 60%),linear-gradient(160deg,var(--hero),var(--hero-2));color:var(--hero-ink);overflow:hidden}
+.hero .wrap{display:grid;gap:40px;grid-template-columns:1fr;align-items:center;padding-block:64px 72px}
+@media(min-width:940px){.hero .wrap{grid-template-columns:1.05fr .95fr}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--hero-muted);margin-bottom:18px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--amber-2);box-shadow:0 0 0 6px rgba(242,180,85,.18)}
+.hero h1{font-size:clamp(36px,5.6vw,64px);font-weight:800;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--amber-2)}
+.hero .lead{max-width:54ch;font-size:19px;color:var(--hero-muted);margin:20px 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:700;text-decoration:none;font-size:16px;border:2px solid transparent;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.p{background:var(--amber);color:var(--amber-ink)}
+.btn.s{border-color:rgba(255,255,255,.5);color:#fff}
+.btn.s:hover{background:rgba(255,255,255,.08)}
+.btn svg{width:18px;height:18px;fill:currentColor}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chips span{font-size:13.5px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#E6EEF8}
+
+.stage{position:relative;max-width:560px;width:100%;margin-inline:auto}
+.photo{margin:0;position:relative;border-radius:26px;overflow:hidden;box-shadow:0 30px 70px rgba(3,18,36,.45);aspect-ratio:5/4;background:linear-gradient(140deg,#0F4C86,#082D52)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo.noimg img{display:none}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,45,82,.55));pointer-events:none}
+.photo figcaption{position:absolute;right:12px;bottom:10px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.float{position:absolute;background:#fff;color:#13202E;border-radius:14px;padding:10px 14px;box-shadow:0 18px 40px rgba(3,18,36,.35);font-size:13.5px;display:flex;align-items:center;gap:10px;animation:bob 6s ease-in-out infinite}
+.float b{display:block;font-size:14px}
+.float small{color:#56667B}
+.float .dot{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+.float .dot svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.f1{left:-4%;top:6%}.f2{right:-4%;top:44%;animation-delay:-2s}.f3{left:4%;bottom:-4%;animation-delay:-4s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media(max-width:620px){.float{font-size:12px;padding:7px 10px}.float .dot{width:24px;height:24px}.f1{left:8px;top:8px}.f2{display:none}.f3{left:auto;right:8px;bottom:30px}}
+
+/* ---------- cinta ---------- */
+.ticker{background:var(--amber);color:var(--amber-ink);overflow:hidden;white-space:nowrap}
+.ticker .track{display:inline-flex;gap:38px;padding:12px 0;animation:tick 38s linear infinite;font-family:var(--f-display);font-weight:700;font-size:16px}
+.ticker .track span::after{content:"•";margin-left:38px;opacity:.5}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- secciones ---------- */
+section{padding-block:84px}
+.sec-h{max-width:66ch;margin-bottom:40px}
+.sec-h h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.01em}
+.sec-h p{color:var(--muted);margin-top:14px;font-size:18px}
+.tag{display:inline-block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--amber);margin-bottom:12px}
+.alt{background:var(--soft);border-block:1px solid var(--line)}
+.note{font-size:13.5px;color:var(--muted);margin-top:14px}
+.note b{color:var(--ink)}
+
+/* servicios */
+.svc{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;min-width:0;transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,61,110,.12);border-color:color-mix(in srgb,var(--link) 40%,var(--line))}
+.card h3{font-size:21px;margin:14px 0 8px}
+.card p{color:var(--muted)}
+.card .own{position:absolute;top:18px;right:18px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--link)}
+.card .own.pt{color:var(--amber)}
+.ico{width:48px;height:48px;border-radius:13px;background:linear-gradient(140deg,var(--navy),var(--navy-2));display:grid;place-items:center}
+.ico svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card.pt .ico{background:linear-gradient(140deg,#B8730F,var(--amber))}
+
+/* demostraciones: dos columnas */
+.demo{display:grid;gap:44px;grid-template-columns:1fr;align-items:center}
+@media(min-width:940px){.demo{grid-template-columns:1fr 1fr}.demo.rev>:first-child{order:2}}
+.bul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.bul li{display:flex;gap:12px;align-items:flex-start}
+.bul li::before{content:"";flex:none;width:22px;height:22px;margin-top:2px;border-radius:7px;background:var(--soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D98B1C' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/14px no-repeat}
+.legal{border-left:4px solid var(--amber);background:var(--surface);padding:14px 16px;border-radius:0 12px 12px 0;font-size:14.5px;margin-top:22px;color:var(--ink)}
+
+/* formulario animado */
+.win{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(11,61,110,.14);overflow:hidden;min-width:0}
+.win .bar{display:flex;align-items:center;gap:6px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
+.win .bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.win .bar i:nth-child(1){background:#E5675C}.win .bar i:nth-child(2){background:#E9B44C}.win .bar i:nth-child(3){background:#5BB974}
+.win .bar span{margin-left:10px;font-size:13px;color:var(--muted);font-weight:600}
+.form{padding:22px;display:grid;gap:14px}
+.fld label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
+.fld .in{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;font-family:var(--f-mono);font-size:14.5px;color:var(--ink);background:var(--bg);transition:border-color .2s}
+.fld.on .in{border-color:var(--amber)}
+.fld .in::after{content:"";display:inline-block;width:2px;height:1.05em;background:var(--amber);vertical-align:-2px;margin-left:1px;opacity:0}
+.fld.on .in::after{opacity:1;animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.row2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media(max-width:480px){.row2{grid-template-columns:1fr}}
+.chk{display:flex;align-items:center;gap:10px;font-size:14.5px}
+.chk b{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--line);display:grid;place-items:center;transition:background .2s,border-color .2s}
+.chk.on b{background:var(--ok);border-color:var(--ok)}
+.chk b svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none;opacity:0}
+.chk.on b svg{opacity:1}
+.prog{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--navy-2),var(--amber));transition:width .4s}
+.done{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ok);opacity:0;transition:opacity .3s;font-size:15px}
+.done.on{opacity:1}
+.demo-tag{font-size:12px;color:var(--muted);padding:0 22px 16px}
+
+/* chat IA */
+.phone{max-width:380px;margin-inline:auto;background:#0E1B28;border-radius:34px;padding:12px;box-shadow:0 30px 70px rgba(3,18,36,.35);width:100%}
+.screen{background:#ECE5DD;border-radius:24px;overflow:hidden}
+.ch{display:flex;align-items:center;gap:10px;background:#0B3D6E;color:#fff;padding:12px 14px}
+.ch .av{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.ch .av svg{width:24px;height:24px}
+.ch b{display:block;font-size:14.5px;line-height:1.2}
+.ch small{font-size:12px;color:#C9D8EA}
+.msgs{height:360px;padding:14px;display:flex;flex-direction:column;gap:8px;overflow:hidden;justify-content:flex-end}
+.msg{max-width:82%;padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.4;color:#13202E;box-shadow:0 1px 1px rgba(0,0,0,.08);animation:pop .3s ease-out}
+.msg.c{align-self:flex-end;background:#D9FDD3;border-top-right-radius:4px}
+.msg.a{align-self:flex-start;background:#fff;border-top-left-radius:4px}
+.msg.sys{align-self:center;background:#FFF4DF;color:#5B3A06;font-size:12.5px;font-weight:600;border-radius:8px}
+.typing{align-self:flex-start;background:#fff;border-radius:12px;padding:10px 12px;display:flex;gap:4px}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9AA7B5;animation:tdot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+@keyframes pop{from{transform:translateY(6px);opacity:.3}to{transform:none;opacity:1}}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:26px}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center;font-size:13.5px;font-weight:600;position:relative;min-width:0}
+.flow div small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}
+.flow div:not(:last-child)::after{content:"";position:absolute;right:-8px;top:50%;width:8px;height:2px;background:var(--amber)}
+@media(max-width:560px){.flow{grid-template-columns:1fr 1fr}.flow div::after{display:none}}
+
+/* pestañas */
+.tabs [role=tablist]{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tabs [role=tab]{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 18px;font:700 15px var(--f-body);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tabs [role=tab][aria-selected=true]{background:var(--navy);border-color:var(--navy);color:#fff}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px;display:grid;gap:30px;grid-template-columns:1fr;animation:fade .35s ease-out}
+@media(min-width:860px){.panel.two{grid-template-columns:1fr 1.2fr}}
+@keyframes fade{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel h3{font-size:26px;margin-bottom:10px}
+.panel p{color:var(--muted)}
+.sector-vis{background:var(--soft);border-radius:16px;padding:20px;display:grid;gap:10px;align-content:start}
+.sv-row{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px;min-width:0}
+.sv-row .n{width:28px;height:28px;border-radius:8px;flex:none;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:800;font-family:var(--f-display);font-size:13px}
+.sv-row span{min-width:0}
+.vals{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+.vals div{background:var(--soft);border-radius:14px;padding:16px}
+.vals b{font-family:var(--f-display);display:block;font-size:17px;margin-bottom:4px}
+.vals span{color:var(--muted);font-size:15px}
+
+/* panel de muestra */
+.dash{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 24px 60px rgba(11,61,110,.1);min-width:0}
+.dash-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.dash-h b{font-family:var(--f-display);font-size:18px}
+.pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#FFF4DF;color:#7A4D06}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}
+@media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--soft);border-radius:14px;padding:14px;min-width:0}
+.kpi small{display:block;font-size:12.5px;color:var(--muted);font-weight:600}
+.kpi strong{display:block;font-family:var(--f-display);font-size:28px;font-variant-numeric:tabular-nums;margin-top:2px}
+.kpi em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--ok)}
+.charts{display:grid;gap:14px;grid-template-columns:1fr;margin-top:14px}
+@media(min-width:820px){.charts{grid-template-columns:1.5fr 1fr}}
+.chart{background:var(--soft);border-radius:14px;padding:14px;min-width:0}
+.chart small{font-size:12.5px;color:var(--muted);font-weight:600}
+.chart svg{width:100%;height:auto;display:block;margin-top:8px}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.line{fill:none;stroke:var(--chart);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:0}
+.dash.go .line{animation:draw 2.2s ease-out}
+@keyframes draw{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+.area{fill:var(--chart);opacity:.12}
+.gl{stroke:var(--grid);stroke-width:1}
+.barr{fill:var(--chart);transform-origin:0 0}
+.barr.hi{fill:var(--chart-2)}
+.dash.go .barr{animation:grow 1.4s ease-out}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* mapa */
+.mapbox{background:linear-gradient(160deg,var(--hero),var(--hero-2));border-radius:22px;padding:18px;color:#fff;position:relative;overflow:hidden;min-width:0}
+.mapbox svg{width:100%;height:auto;display:block}
+.mapbox .lbl{font-size:12px;fill:#DCE7F4;font-family:var(--f-body)}
+.mapbox .hub{font-size:13px;font-weight:700;fill:#fff;font-family:var(--f-display)}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.route{fill:none;stroke:#F2B455;stroke-width:1.6;stroke-dasharray:4 6;animation:dash 1.6s linear infinite;opacity:.8}
+@keyframes dash{to{stroke-dashoffset:-20}}
+.chan{display:grid;gap:10px;margin-top:22px}
+.chan div{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:12px;font-size:14.5px;font-weight:600}
+.chan i{display:block;height:10px;border-radius:99px;background:linear-gradient(90deg,var(--navy-2),var(--amber));transform-origin:left;animation:grow 1.6s ease-out}
+
+/* aliados */
+.partners{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+.pt2{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.pt2 b{font-family:var(--f-display);display:block;font-size:17px}
+.pt2 span{color:var(--muted);font-size:14.5px}
+
+/* pasos */
+.steps{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;min-width:0}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--amber);color:var(--amber-ink);font-family:var(--f-display);font-weight:800;margin-bottom:14px}
+.step h3{font-size:19px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:15.5px}
+
+/* contacto */
+.contact{background:linear-gradient(160deg,var(--hero),var(--hero-2));color:#fff}
+.contact .sec-h p{color:var(--hero-muted)}
+.cgrid{display:grid;gap:30px;grid-template-columns:1fr}
+@media(min-width:860px){.cgrid{grid-template-columns:1.1fr .9fr}}
+.cbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:24px}
+.cbox dt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted);margin-top:14px}
+.cbox dt:first-child{margin-top:0}
+.cbox dd{margin:2px 0 0;font-size:19px;font-weight:600;user-select:all;overflow-wrap:anywhere}
+.soc.big{margin-top:22px;gap:8px}
+.soc.big a{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.08);color:#fff}
+.soc.big a:hover{background:var(--amber);color:var(--amber-ink)}
+.soc.big svg{width:20px;height:20px}
+
+footer{padding-block:34px;font-size:14px;color:var(--muted)}
+footer p{max-width:86ch;margin-bottom:8px}
+footer b{color:var(--ink)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+
+<!-- íconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-ig" viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 3.6c2.7 0 3 0 4.1.1 2.7.1 4 1.4 4.1 4.1.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c-.1 2.7-1.4 4-4.1 4.1-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-2.7-.1-4-1.4-4.1-4.1C3.7 15 3.6 14.7 3.6 12s0-3 .1-4.1C3.8 5.2 5.1 3.9 7.8 3.8 8.9 3.7 9.3 3.6 12 3.6zM12 2C9.3 2 8.9 2 7.9 2.1 4.2 2.2 2.2 4.2 2.1 7.9 2 8.9 2 9.3 2 12s0 3.1.1 4.1c.2 3.7 2.2 5.7 5.8 5.8 1 .1 1.4.1 4.1.1s3.1 0 4.1-.1c3.7-.2 5.7-2.2 5.8-5.8.1-1 .1-1.4.1-4.1s0-3.1-.1-4.1c-.2-3.7-2.2-5.7-5.8-5.8C15.1 2 14.7 2 12 2z"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M6.9 8.8H3.8V20h3.1V8.8zM5.4 3.8a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM20.2 13.6c0-3-.7-5.1-4-5.1-1.6 0-2.7.9-3.1 1.7V8.8H10V20h3.1v-5.5c0-1.5.3-2.9 2.1-2.9s1.9 1.7 1.9 3V20h3.1v-6.4z"/></symbol>
+  <symbol id="i-tt" viewBox="0 0 24 24"><path d="M16.6 3c.3 2.2 1.5 3.6 3.6 3.8v2.7c-1.3.1-2.5-.3-3.6-1v5.6c0 6.4-6.9 8.4-9.7 3.8-1.8-3-.7-8.2 5.1-8.4v2.9c-.4.1-.9.2-1.3.3-1.3.4-2 1.3-1.8 2.8.4 2.8 5.5 3.6 5.1-1.8V3h2.6z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/></symbol>
+</svg>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#inicio" aria-label="MSC International">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--mark-bg)"/><polyline points="14,48 14,20 32,38 50,20 50,48" fill="none" stroke="var(--mark-fg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="20" r="5.5" fill="#D98B1C"/><circle cx="50" cy="20" r="5.5" fill="#D98B1C"/><circle cx="32" cy="38" r="5.5" fill="#D98B1C"/></svg>
+    <span><b>MSC</b><small>INTERNATIONAL</small></span>
+  </a>
+  <nav class="main" aria-label="Principal">
+    <a href="#servicios" data-en="Services">Servicios</a>
+    <a href="#ia" data-en="AI">Inteligencia artificial</a>
+    <a href="#sectores" data-en="Industries">Sectores</a>
+    <a href="#resultados" data-en="Results">Resultados</a>
+    <a href="#nosotros" data-en="About">Nosotros</a>
+    <a href="#contacto" data-en="Contact">Contacto</a>
+  </nav>
+  <div class="tools">
+    <div class="soc">
+      <a href="https://www.facebook.com/mscinternationalnj" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+      <a href="https://wa.me/17328155662" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+    </div>
+    <button class="lang" id="lang" type="button" aria-label="Cambiar idioma / Change language">EN</button>
+  </div>
+</div></header>
+
+<main id="inicio">
+<!-- ================= HÉROE ================= -->
+<div class="hero"><div class="wrap">
+  <div>
+    <p class="eyebrow"><i></i><span data-en="Multi Service Consulting · Elizabeth, New Jersey">Multi Service Consulting · Elizabeth, New Jersey</span></p>
+    <h1 data-en="Powering your business <em>and simplifying your operations.</em>">Impulsamos su negocio <em>y simplificamos su gestión.</em></h1>
+    <p class="lead" data-en="Websites, social media and artificial intelligence that work for your business, plus guidance with paperwork and a network of authorized professionals. One point of contact, in Spanish and English.">Webs, redes sociales e inteligencia artificial que trabajan por su negocio, además de orientación en trámites y una red de profesionales autorizados. Un solo punto de contacto, en español e inglés.</p>
+    <div class="cta">
+      <a class="btn p" href="https://wa.me/17328155662" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span data-en="Write to us on WhatsApp">Escríbanos por WhatsApp</span></a>
+      <a class="btn s" href="#ia" data-en="See how AI helps you">Vea cómo le ayuda la IA</a>
+    </div>
+    <div class="chips">
+      <span data-en="Web design">Diseño web</span><span data-en="Social media">Redes sociales</span><span data-en="AI agents">Agentes de IA</span><span data-en="Forms and paperwork">Formularios y trámites</span><span data-en="Authorized partners">Aliados autorizados</span>
+    </div>
+  </div>
+
+  <div class="stage" aria-hidden="true">
+    <figure class="photo"><img src="img/consultor-msc.webp" alt="Consultor trabajando con una laptop en una oficina" width="800" height="640" loading="eager" onerror="this.closest('figure').classList.add('noimg')"><figcaption>Foto: Mina Rad / Unsplash</figcaption></figure>
+    <div class="float f1"><span class="dot" style="background:#1E8E5A"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><b data-en="Form completed">Formulario completado</b><small data-en="Ready for review">Listo para revisión</small></span></div>
+    <div class="float f2"><span class="dot" style="background:#0B3D6E"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span><span><b data-en="Appointment booked">Cita agendada</b><small data-en="by your AI agent">por su agente de IA</small></span></div>
+    <div class="float f3"><span class="dot" style="background:#D98B1C"><svg viewBox="0 0 24 24"><path d="M4 17l5-5 4 4 7-8"/><path d="M15 8h5v5"/></svg></span><span><b data-en="More visits">Más visitas</b><small data-en="to your website and social media">a su web y redes</small></span></div>
+  </div>
+</div></div>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="track">
+  <span data-en="Web design">Diseño web</span><span data-en="Social media">Redes sociales</span><span data-en="AI agents">Agentes de IA</span><span data-en="Automation">Automatización</span><span data-en="Forms guidance">Orientación en formularios</span><span data-en="Accounting partners">Aliados contables</span><span data-en="Notary partners">Aliados notariales</span><span data-en="Translations">Traducciones</span><span data-en="English and Spanish classes">Clases de inglés y español</span>
+</div></div>
+
+<!-- ================= SERVICIOS ================= -->
+<section id="servicios"><div class="wrap">
+  <div class="sec-h">
+    <span class="tag" data-en="Services">Servicios</span>
+    <h2 data-en="Everything your business needs to grow, in one place">Todo lo que su negocio necesita para crecer, en un solo lugar</h2>
+    <p data-en="Some services are provided directly by MSC. Regulated services are provided by authorized partners, and MSC coordinates the process for you.">Algunos servicios los presta MSC directamente. Los servicios regulados los prestan aliados autorizados, y MSC coordina el proceso por usted.</p>
+  </div>
+  <div class="svc">
+    <article class="card"><span class="own" data-en="MSC">MSC</span><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9h6M7 12h10"/></svg></div>
+      <h3 data-en="Web design">Diseño de páginas web</h3><p data-en="Modern, fast, bilingual websites built to turn visits into messages and appointments.">Sitios modernos, rápidos y bilingües, pensados para convertir visitas en mensajes y citas.</p></article>
+    <article class="card"><span class="own" data-en="MSC">MSC</span><div class="ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.9l7.6-3.8M8.2 13.1l7.6 3.8"/></svg></div>
+      <h3 data-en="Social media management">Manejo de redes sociales</h3><p data-en="Strategy, content and constant presence on Instagram, Facebook, TikTok and LinkedIn.">Estrategia, contenido y presencia constante en Instagram, Facebook, TikTok y LinkedIn.</p></article>
+    <article class="card"><span class="own" data-en="MSC">MSC</span><div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 15h5"/></svg></div>
+      <h3 data-en="AI consulting and automation">Consultoría y automatización con IA</h3><p data-en="AI agents that answer, book and follow up with your clients, plus training so your team uses AI with confidence.">Agentes de IA que responden, agendan y dan seguimiento a sus clientes, y capacitación para que su equipo use la IA con confianza.</p></article>
+    <article class="card"><span class="own" data-en="MSC">MSC</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+      <h3 data-en="Forms and paperwork guidance">Orientación en formularios y trámites</h3><p data-en="We help you fill out and organize forms you can file yourself: renewals, job applications, certifications.">Le ayudamos a llenar y organizar formularios que usted mismo puede presentar: renovaciones, solicitudes de empleo, certificaciones.</p></article>
+    <article class="card pt"><span class="own pt" data-en="Partners">Aliados</span><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h8"/></svg></div>
+      <h3 data-en="Accounting, taxes and company formation">Contabilidad, taxes y formación de compañías</h3><p data-en="Through authorized accountants and tax preparers.">A través de contadores y preparadores de impuestos autorizados.</p></article>
+    <article class="card pt"><span class="own pt" data-en="Partners">Aliados</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.4 7.2 17.9l.9-5.4L4.2 8.7l5.4-.8z"/></svg></div>
+      <h3 data-en="Notary, weddings, translations and classes">Notaría, bodas, traducciones y clases</h3><p data-en="Notarization, weddings, certified translations and personalized English and Spanish classes through authorized partners.">Notarización, bodas, traducciones certificadas y clases personalizadas de inglés y español con aliados autorizados.</p></article>
+  </div>
+</div></section>
+
+<!-- ================= FORMULARIOS (demo) ================= -->
+<section class="alt" id="formularios"><div class="wrap demo">
+  <div>
+    <span class="tag" data-en="Forms without stress">Formularios sin estrés</span>
+    <h2 class="sec-h" style="margin:0;font-size:clamp(28px,4vw,42px)" data-en="We fill it out with you, step by step">Lo llenamos con usted, paso a paso</h2>
+    <p class="note" style="font-size:18px;margin-top:14px" data-en="For people who don't use a computer often, don't feel comfortable in English, or simply want to do it right the first time.">Para quienes no usan la computadora con frecuencia, no se sienten cómodos en inglés o simplemente quieren hacerlo bien desde la primera vez.</p>
+    <ul class="bul">
+      <li data-en="We review the requirements and the documents you need">Revisamos los requisitos y los documentos que necesita</li>
+      <li data-en="We fill out the form with the information you give us">Llenamos el formulario con la información que usted nos da</li>
+      <li data-en="We explain each section in Spanish">Le explicamos cada sección en español</li>
+      <li data-en="You review it, sign it and file it">Usted lo revisa, lo firma y lo presenta</li>
+    </ul>
+    <p class="legal" data-en="MSC is not a law firm and does not provide legal advice or immigration representation. If your case needs a lawyer, we refer you to an authorized professional.">MSC no es un bufete de abogados y no ofrece asesoría legal ni representación migratoria. Si su caso requiere un abogado, le referimos a un profesional autorizado.</p>
+  </div>
+  <div class="win" id="formdemo">
+    <div class="bar"><i></i><i></i><i></i><span data-en="Job application · demo">Solicitud de empleo · demostración</span></div>
+    <div class="form">
+      <div class="fld"><label data-en="Full name">Nombre completo</label><div class="in" data-v="María González"></div></div>
+      <div class="row2">
+        <div class="fld"><label data-en="Phone">Teléfono</label><div class="in" data-v="(732) 555-0147"></div></div>
+        <div class="fld"><label data-en="Date of birth">Fecha de nacimiento</label><div class="in" data-v="03/14/1988"></div></div>
+      </div>
+      <div class="fld"><label data-en="Email">Correo electrónico</label><div class="in" data-v="maria@ejemplo.com"></div></div>
+      <div class="fld"><label data-en="Position">Puesto solicitado</label><div class="in" data-v="Asistente administrativa" data-ven="Administrative assistant"></div></div>
+      <div class="chk" id="chk"><b><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></b><span data-en="Supporting documents attached">Documentos de respaldo adjuntos</span></div>
+      <div class="prog"><i id="prog"></i></div>
+      <div class="done" id="done"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><span data-en="Ready for your review and signature">Listo para su revisión y firma</span></div>
+    </div>
+    <p class="demo-tag" data-en="Demonstration with fictitious data.">Demostración con datos ficticios.</p>
+  </div>
+</div></section>
+
+<!-- ================= IA (demo chat) ================= -->
+<section id="ia"><div class="wrap demo rev">
+  <div>
+    <span class="tag" data-en="Artificial intelligence">Inteligencia artificial</span>
+    <h2 style="font-size:clamp(28px,4vw,42px)" data-en="An assistant that answers your clients while you work">Un asistente que atiende a sus clientes mientras usted trabaja</h2>
+    <p class="note" style="font-size:18px;margin-top:14px" data-en="We design and set up AI agents for WhatsApp, your website and social media. They answer frequent questions, book appointments, send requirement lists and remind clients, 24 hours a day.">Diseñamos y configuramos agentes de IA para WhatsApp, su web y sus redes. Responden preguntas frecuentes, agendan citas, envían listas de requisitos y recuerdan a sus clientes, las 24 horas.</p>
+    <div class="flow">
+      <div data-en="Message<small>WhatsApp · web</small>">Mensaje<small>WhatsApp · web</small></div>
+      <div data-en="AI agent<small>answers</small>">Agente IA<small>responde</small></div>
+      <div data-en="Calendar<small>books</small>">Agenda<small>reserva</small></div>
+      <div data-en="Follow-up<small>reminds</small>">Seguimiento<small>recuerda</small></div>
+    </div>
+    <ul class="bul">
+      <li data-en="Diagnosis of your processes and where AI saves you time">Diagnóstico de sus procesos y de dónde la IA le ahorra tiempo</li>
+      <li data-en="Setup with your information, tone and services">Configuración con su información, su tono y sus servicios</li>
+      <li data-en="Training for you and your team, in Spanish">Capacitación para usted y su equipo, en español</li>
+      <li data-en="Ongoing support and adjustments as your business grows">Acompañamiento y ajustes a medida que su negocio crece</li>
+    </ul>
+  </div>
+  <div>
+    <div class="phone" aria-label="Simulación de conversación">
+      <div class="screen">
+        <div class="ch"><span class="av"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0B3D6E"/><polyline points="14,48 14,20 32,38 50,20 50,48" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="20" r="5.5" fill="#D98B1C"/><circle cx="50" cy="20" r="5.5" fill="#D98B1C"/><circle cx="32" cy="38" r="5.5" fill="#D98B1C"/></svg></span><span><b data-en="Your business · AI assistant">Su negocio · Asistente IA</b><small data-en="online">en línea</small></span></div>
+        <div class="msgs" id="msgs"></div>
+      </div>
+    </div>
+    <p class="note" style="text-align:center" data-en="Simulated conversation. The agent informs and books; it does not give legal advice.">Conversación simulada. El agente informa y agenda; no da asesoría legal.</p>
+  </div>
+</div></section>
+
+<!-- ================= SECTORES (pestañas) ================= -->
+<section class="alt" id="sectores"><div class="wrap">
+  <div class="sec-h">
+    <span class="tag" data-en="Industries">Sectores</span>
+    <h2 data-en="How we help small professional practices">Cómo ayudamos a pequeñas oficinas profesionales</h2>
+    <p data-en="Lawyers, notaries and accountants spend hours on repetitive tasks. We automate them so you can focus on your clients.">Abogados, notarios y contadores pierden horas en tareas repetitivas. Las automatizamos para que usted se concentre en sus clientes.</p>
+  </div>
+  <div class="tabs" data-tabs>
+    <div role="tablist" aria-label="Sectores">
+      <button role="tab" id="t-ab" aria-controls="p-ab" aria-selected="true" data-en="Lawyers">Abogados</button>
+      <button role="tab" id="t-no" aria-controls="p-no" aria-selected="false" tabindex="-1" data-en="Notaries">Notarios</button>
+      <button role="tab" id="t-co" aria-controls="p-co" aria-selected="false" tabindex="-1" data-en="Accountants and tax preparers">Contadores y taxes</button>
+      <button role="tab" id="t-pn" aria-controls="p-pn" aria-selected="false" tabindex="-1" data-en="Small businesses">Pequeños negocios</button>
+    </div>
+    <div class="panel two" role="tabpanel" id="p-ab" aria-labelledby="t-ab">
+      <div><h3 data-en="Law offices">Oficinas de abogados</h3><p data-en="An intake system that receives inquiries, collects basic information and books consultations, without replacing the lawyer's judgment.">Un sistema de admisión que recibe consultas, recoge la información básica y agenda la cita, sin reemplazar el criterio del abogado.</p></div>
+      <div class="sector-vis">
+        <div class="sv-row"><span class="n">1</span><span data-en="AI agent that receives inquiries 24/7 and filters by case type">Agente de IA que recibe consultas 24/7 y las clasifica por tipo de caso</span></div>
+        <div class="sv-row"><span class="n">2</span><span data-en="Online booking and automatic reminders">Reservas en línea y recordatorios automáticos</span></div>
+        <div class="sv-row"><span class="n">3</span><span data-en="Document checklists sent to the client before the meeting">Listas de documentos enviadas al cliente antes de la cita</span></div>
+        <div class="sv-row"><span class="n">4</span><span data-en="Professional website and Google Business Profile">Sitio web profesional y perfil de Google Business</span></div>
+      </div>
+    </div>
+    <div class="panel two" role="tabpanel" id="p-no" aria-labelledby="t-no" hidden>
+      <div><h3 data-en="Notaries">Notarios</h3><p data-en="Fewer calls asking the same thing and more appointments confirmed, with clients arriving with the right documents.">Menos llamadas preguntando lo mismo y más citas confirmadas, con clientes que llegan con los documentos correctos.</p></div>
+      <div class="sector-vis">
+        <div class="sv-row"><span class="n">1</span><span data-en="Appointment booking and confirmation by WhatsApp">Reserva de citas y confirmación por WhatsApp</span></div>
+        <div class="sv-row"><span class="n">2</span><span data-en="Automatic requirement list for each type of document">Lista automática de requisitos según el tipo de documento</span></div>
+        <div class="sv-row"><span class="n">3</span><span data-en="Reminders the day before">Recordatorios el día anterior</span></div>
+        <div class="sv-row"><span class="n">4</span><span data-en="Visibility on Google Maps and social media">Visibilidad en Google Maps y redes sociales</span></div>
+      </div>
+    </div>
+    <div class="panel two" role="tabpanel" id="p-co" aria-labelledby="t-co" hidden>
+      <div><h3 data-en="Accountants and tax preparers">Contadores y preparadores de taxes</h3><p data-en="Organized tax seasons: documents collected online, clients reminded on time and frequent questions answered automatically.">Temporadas de impuestos ordenadas: documentos recibidos en línea, clientes avisados a tiempo y preguntas frecuentes respondidas solas.</p></div>
+      <div class="sector-vis">
+        <div class="sv-row"><span class="n">1</span><span data-en="Online forms to collect client documents">Formularios en línea para recibir los documentos del cliente</span></div>
+        <div class="sv-row"><span class="n">2</span><span data-en="Tax season reminder campaigns">Campañas de recordatorio para la temporada de taxes</span></div>
+        <div class="sv-row"><span class="n">3</span><span data-en="Assistant for frequent questions">Asistente para preguntas frecuentes</span></div>
+        <div class="sv-row"><span class="n">4</span><span data-en="Simple dashboard to track each client's status">Panel sencillo para ver el estado de cada cliente</span></div>
+      </div>
+    </div>
+    <div class="panel two" role="tabpanel" id="p-pn" aria-labelledby="t-pn" hidden>
+      <div><h3 data-en="Small businesses">Pequeños negocios</h3><p data-en="Restaurants, cleaners, salons, daycares and shops: an online presence that brings clients and tools that save time.">Restaurantes, lavanderías, salones, guarderías y tiendas: presencia en línea que atrae clientes y herramientas que ahorran tiempo.</p></div>
+      <div class="sector-vis">
+        <div class="sv-row"><span class="n">1</span><span data-en="Website with menu, catalog or services">Web con menú, catálogo o servicios</span></div>
+        <div class="sv-row"><span class="n">2</span><span data-en="Social media content plan">Plan de contenido para redes</span></div>
+        <div class="sv-row"><span class="n">3</span><span data-en="WhatsApp Business with automatic replies">WhatsApp Business con respuestas automáticas</span></div>
+        <div class="sv-row"><span class="n">4</span><span data-en="Simple reports of visits, messages and sales">Reportes simples de visitas, mensajes y ventas</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= RESULTADOS: panel + mapa ================= -->
+<section id="resultados"><div class="wrap">
+  <div class="sec-h">
+    <span class="tag" data-en="Results you can see">Resultados que se ven</span>
+    <h2 data-en="Measure what matters in your business">Mida lo que importa en su negocio</h2>
+    <p data-en="We set up simple dashboards so you can see visits, messages and appointments in one place, and decide with data.">Configuramos paneles sencillos para que vea visitas, mensajes y citas en un solo lugar, y decida con datos.</p>
+  </div>
+  <div class="dash" id="dash">
+    <div class="dash-h"><b data-en="Business dashboard">Panel de su negocio</b><span class="pill" data-en="Sample data · illustrative example">Datos de muestra · ejemplo ilustrativo</span></div>
+    <div class="kpis">
+      <div class="kpi"><small data-en="Website visits">Visitas al sitio</small><strong data-count="2480">2,480</strong><em data-en="▲ vs. previous month">▲ vs. mes anterior</em></div>
+      <div class="kpi"><small data-en="WhatsApp messages">Mensajes por WhatsApp</small><strong data-count="136">136</strong><em data-en="▲ vs. previous month">▲ vs. mes anterior</em></div>
+      <div class="kpi"><small data-en="Appointments booked">Citas agendadas</small><strong data-count="42">42</strong><em data-en="▲ vs. previous month">▲ vs. mes anterior</em></div>
+      <div class="kpi"><small data-en="Average reply time">Tiempo de respuesta</small><strong>2 min</strong><em data-en="with AI agent">con agente de IA</em></div>
+    </div>
+    <div class="charts">
+      <div class="chart"><small data-en="Weekly website visits (sample)">Visitas semanales al sitio (muestra)</small>
+        <svg viewBox="0 0 520 200" role="img" aria-label="Gráfico de línea de muestra">
+          <line class="gl" x1="40" y1="20" x2="510" y2="20"/><line class="gl" x1="40" y1="70" x2="510" y2="70"/><line class="gl" x1="40" y1="120" x2="510" y2="120"/><line class="gl" x1="40" y1="170" x2="510" y2="170"/>
+          <text x="32" y="24" text-anchor="end">750</text><text x="32" y="74" text-anchor="end">500</text><text x="32" y="124" text-anchor="end">250</text><text x="32" y="174" text-anchor="end">0</text>
+          <path class="area" d="M40 146 L83 141 L125 137 L168 130 L211 133 L254 120 L297 112 L339 106 L382 94 L425 88 L468 74 L510 64 L510 170 L40 170Z"/>
+          <path class="line" d="M40 146 L83 141 L125 137 L168 130 L211 133 L254 120 L297 112 L339 106 L382 94 L425 88 L468 74 L510 64"/>
+          <circle cx="510" cy="64" r="5.5" fill="var(--chart-2)"/>
+          <text x="40" y="192">S1</text><text x="254" y="192" text-anchor="middle">S6</text><text x="510" y="192" text-anchor="end">S12</text>
+        </svg>
+      </div>
+      <div class="chart"><small data-en="Messages by channel (sample)">Mensajes por canal (muestra)</small>
+        <svg viewBox="0 0 300 200" role="img" aria-label="Gráfico de barras de muestra">
+          <text x="0" y="30">Instagram</text><rect class="barr hi" x="88" y="18" width="180" height="16" rx="5"/><text x="274" y="31">48</text>
+          <text x="0" y="68">Google</text><rect class="barr" x="88" y="56" width="142" height="16" rx="5"/><text x="236" y="69">38</text>
+          <text x="0" y="106">WhatsApp</text><rect class="barr" x="88" y="94" width="105" height="16" rx="5"/><text x="199" y="107">28</text>
+          <text x="0" y="144">Facebook</text><rect class="barr" x="88" y="132" width="60" height="16" rx="5"/><text x="154" y="145">16</text>
+          <text x="0" y="182" data-en="Referrals">Referidos</text><rect class="barr" x="88" y="170" width="23" height="16" rx="5"/><text x="117" y="183">6</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo" style="margin-top:56px">
+    <div>
+      <span class="tag" data-en="More traffic">Más tráfico</span>
+      <h2 style="font-size:clamp(26px,3.6vw,38px)" data-en="We bring clients from your area to your website and social media">Llevamos clientes de su zona a su web y sus redes</h2>
+      <p class="note" style="font-size:18px;margin-top:14px" data-en="Google Business Profile, local search, social media and targeted ads working together so the people near you find you first.">Perfil de Google Business, búsqueda local, redes sociales y anuncios focalizados trabajando juntos para que las personas cerca de usted le encuentren primero.</p>
+      <div class="chan">
+        <div><span>Google</span><i style="width:92%"></i></div>
+        <div><span>Instagram</span><i style="width:80%;animation-delay:.15s"></i></div>
+        <div><span>Facebook</span><i style="width:64%;animation-delay:.3s"></i></div>
+        <div><span>TikTok</span><i style="width:52%;animation-delay:.45s"></i></div>
+        <div><span>WhatsApp</span><i style="width:70%;animation-delay:.6s"></i></div>
+      </div>
+      <p class="note" data-en="Illustration. Each business gets its own channel plan.">Ilustración. Cada negocio recibe su propio plan de canales.</p>
+    </div>
+    <div class="mapbox" aria-label="Ilustración de mapa de la zona de servicio">
+      <svg viewBox="0 0 480 380">
+        <defs><pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#FFFFFF" opacity=".16"/></pattern></defs>
+        <rect width="480" height="380" fill="url(#dots)"/>
+        <path d="M330 0 C350 80 360 140 400 190 C430 230 420 300 470 380 L480 380 L480 0Z" fill="#FFFFFF" opacity=".05"/>
+        <!-- rutas hacia el centro -->
+        <path class="route" d="M250 70 Q230 130 230 190"/>
+        <path class="route" d="M370 90 Q300 120 236 186"/>
+        <path class="route" d="M110 150 Q170 160 224 190"/>
+        <path class="route" d="M200 300 Q215 250 228 200"/>
+        <path class="route" d="M330 310 Q280 250 236 198"/>
+        <path class="route" d="M90 270 Q160 230 224 196"/>
+        <!-- pines -->
+        <g><circle cx="250" cy="70" r="6" fill="#F2B455"/><circle class="pulse" cx="250" cy="70" r="6" fill="#F2B455"/><text class="lbl" x="262" y="66">Newark</text></g>
+        <g><circle cx="370" cy="90" r="6" fill="#F2B455"/><circle class="pulse" cx="370" cy="90" r="6" fill="#F2B455" style="animation-delay:.4s"/><text class="lbl" x="382" y="86">Jersey City</text></g>
+        <g><circle cx="110" cy="150" r="6" fill="#F2B455"/><circle class="pulse" cx="110" cy="150" r="6" fill="#F2B455" style="animation-delay:.8s"/><text class="lbl" x="60" y="136">Union</text></g>
+        <g><circle cx="200" cy="300" r="6" fill="#F2B455"/><circle class="pulse" cx="200" cy="300" r="6" fill="#F2B455" style="animation-delay:1.2s"/><text class="lbl" x="150" y="324">Linden</text></g>
+        <g><circle cx="330" cy="310" r="6" fill="#F2B455"/><circle class="pulse" cx="330" cy="310" r="6" fill="#F2B455" style="animation-delay:1.6s"/><text class="lbl" x="342" y="314">Staten Island</text></g>
+        <g><circle cx="90" cy="270" r="6" fill="#F2B455"/><circle class="pulse" cx="90" cy="270" r="6" fill="#F2B455" style="animation-delay:2s"/><text class="lbl" x="40" y="294">Roselle</text></g>
+        <!-- centro -->
+        <circle class="pulse" cx="230" cy="194" r="16" fill="#D98B1C" style="animation-duration:3s"/>
+        <circle cx="230" cy="194" r="16" fill="#D98B1C"/>
+        <g transform="translate(216 180)"><polyline points="6,22 6,8 14,16 22,8 22,22" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <text class="hub" x="256" y="190" data-en="Your business">Su negocio</text>
+        <text class="lbl" x="256" y="208">Elizabeth, NJ</text>
+      </svg>
+      <p class="note" style="color:#C9D8EA;margin:6px 4px 0" data-en="Illustration of nearby areas; not a geographic map to scale.">Ilustración de zonas cercanas; no es un mapa geográfico a escala.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= NOSOTROS (pestañas) ================= -->
+<section class="alt" id="nosotros"><div class="wrap">
+  <div class="sec-h">
+    <span class="tag" data-en="About MSC">Nosotros</span>
+    <h2 data-en="Technology with a human touch, close to you">Tecnología con trato humano, cerca de usted</h2>
+  </div>
+  <div class="tabs" data-tabs>
+    <div role="tablist" aria-label="Nosotros">
+      <button role="tab" id="t-mi" aria-controls="p-mi" aria-selected="true" data-en="Mission">Misión</button>
+      <button role="tab" id="t-vi" aria-controls="p-vi" aria-selected="false" tabindex="-1" data-en="Vision">Visión</button>
+      <button role="tab" id="t-va" aria-controls="p-va" aria-selected="false" tabindex="-1" data-en="Values">Valores</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-mi" aria-labelledby="t-mi">
+      <h3 data-en="Mission">Misión</h3>
+      <p style="font-size:19px;max-width:70ch" data-en="To help small businesses, professionals and families in New Jersey grow and handle their paperwork with accessible technology, clear guidance and a network of authorized professionals.">Ayudar a pequeños negocios, profesionales y familias de New Jersey a crecer y resolver sus trámites con tecnología accesible, orientación clara y una red de profesionales autorizados.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p-vi" aria-labelledby="t-vi" hidden>
+      <h3 data-en="Vision">Visión</h3>
+      <p style="font-size:19px;max-width:70ch" data-en="To be the trusted partner in New Jersey that helps entrepreneurs and professionals use technology and artificial intelligence safely and with real results.">Ser el aliado de confianza en New Jersey que ayuda a emprendedores y profesionales a usar la tecnología y la inteligencia artificial con seguridad y resultados reales.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p-va" aria-labelledby="t-va" hidden>
+      <h3 data-en="Values">Valores</h3>
+      <div class="vals">
+        <div><b data-en="Clarity">Claridad</b><span data-en="We explain every step in plain language.">Explicamos cada paso en lenguaje sencillo.</span></div>
+        <div><b data-en="Trust">Confianza</b><span data-en="We protect your information and keep our word.">Cuidamos su información y cumplimos lo acordado.</span></div>
+        <div><b data-en="Closeness">Cercanía</b><span data-en="Personal attention in Spanish and English.">Atención personal en español e inglés.</span></div>
+        <div><b data-en="Responsible innovation">Innovación responsable</b><span data-en="AI that helps people, with human oversight.">IA que ayuda a las personas, con supervisión humana.</span></div>
+        <div><b data-en="Compliance">Cumplimiento</b><span data-en="We respect legal limits and work with authorized professionals.">Respetamos los límites legales y trabajamos con profesionales autorizados.</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= PROCESO ================= -->
+<section id="proceso"><div class="wrap">
+  <div class="sec-h">
+    <span class="tag" data-en="How we work">Cómo trabajamos</span>
+    <h2 data-en="From the first conversation to results">De la primera conversación a los resultados</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><h3 data-en="Initial consultation">Consulta inicial</h3><p data-en="You tell us what you need and we clarify the goal.">Usted nos cuenta qué necesita y aclaramos el objetivo.</p></div>
+    <div class="step"><h3 data-en="Proposal">Propuesta</h3><p data-en="What MSC does directly and which partner, if any, takes part.">Qué hace MSC directamente y qué aliado participa, si corresponde.</p></div>
+    <div class="step"><h3 data-en="Implementation">Implementación</h3><p data-en="We build, configure and coordinate with partners.">Construimos, configuramos y coordinamos con los aliados.</p></div>
+    <div class="step"><h3 data-en="Support">Acompañamiento</h3><p data-en="Training, follow-up and adjustments over time.">Capacitación, seguimiento y ajustes en el tiempo.</p></div>
+  </div>
+</div></section>
+
+<!-- ================= CONTACTO ================= -->
+<section id="contacto" class="contact"><div class="wrap cgrid">
+  <div>
+    <div class="sec-h" style="margin:0">
+      <h2 data-en="Let's talk about your business">Hablemos de su negocio</h2>
+      <p data-en="Write to us on WhatsApp and we will reply with the next step.">Escríbanos por WhatsApp y le responderemos con el siguiente paso.</p>
+    </div>
+    <div class="cta" style="margin-top:24px"><a class="btn p" href="https://wa.me/17328155662" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span data-en="Write on WhatsApp">Escribir por WhatsApp</span></a></div>
+    <div class="soc big">
+      <a href="https://www.facebook.com/mscinternationalnj" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+      <a href="https://www.tiktok.com/@mscinternationalnj" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tt"/></svg></a>
+      <a href="https://www.linkedin.com/company/mscinternationalnj" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-in"/></svg></a>
+      <a href="https://wa.me/17328155662" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+    </div>
+  </div>
+  <dl class="cbox" style="margin:0">
+    <dt data-en="Phone and WhatsApp">Teléfono y WhatsApp</dt><dd>732-815-5662</dd>
+    <dt data-en="Email">Correo</dt><dd>info@mscconsultingnj.com</dd>
+    <dt data-en="Location">Ubicación</dt><dd>Elizabeth, NJ 07202</dd>
+    <dt data-en="Facebook">Facebook</dt><dd>MSC International</dd>
+  </dl>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p data-en="<b>MSC International LLC</b> · Multi Service Consulting · Elizabeth, NJ 07202 · mscconsultingnj.com"><b>MSC International LLC</b> · Multi Service Consulting · Elizabeth, NJ 07202 · mscconsultingnj.com</p>
+  <p data-en="Consulting and administrative guidance services. Accounting, notarial, legal and certified translation services are provided by authorized partners.">Servicios de consultoría y orientación administrativa. Los servicios contables, notariales, legales y de traducción certificada son prestados por aliados autorizados.</p>
+</div></footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lang = 'es';
+
+  /* ---- idioma ---- */
+  var btn = document.getElementById('lang');
+  var els = [].slice.call(document.querySelectorAll('[data-en]'));
+  els.forEach(function(e){ e.setAttribute('data-es', e.innerHTML); });
+  function applyLang(){
+    els.forEach(function(e){ e.innerHTML = e.getAttribute(lang === 'en' ? 'data-en' : 'data-es'); });
+    btn.textContent = lang === 'en' ? 'ES' : 'EN';
+    document.documentElement.lang = lang;
+    restartForm(); restartChat();
+  }
+  btn.addEventListener('click', function(){ lang = lang === 'es' ? 'en' : 'es'; applyLang(); });
+
+  /* ---- cinta duplicada para bucle continuo ---- */
+  var track = document.getElementById('track');
+  track.innerHTML += track.innerHTML;
+  els = [].slice.call(document.querySelectorAll('[data-en]'));
+  els.forEach(function(e){ if(!e.hasAttribute('data-es')) e.setAttribute('data-es', e.innerHTML); });
+
+  /* ---- pestañas ---- */
+  [].forEach.call(document.querySelectorAll('[data-tabs]'), function(box){
+    var tabs = [].slice.call(box.querySelectorAll('[role=tab]'));
+    function select(t){
+      tabs.forEach(function(x){
+        var on = x === t;
+        x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+        document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+      });
+    }
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(){ select(t); });
+      t.addEventListener('keydown', function(e){
+        var k = e.key, n = null;
+        if (k === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+        if (k === 'ArrowLeft') n = tabs[(i-1+tabs.length) % tabs.length];
+        if (n){ e.preventDefault(); select(n); n.focus(); }
+      });
+    });
+  });
+
+  /* ---- formulario que se llena solo ---- */
+  var fields = [].slice.call(document.querySelectorAll('#formdemo .in'));
+  var chk = document.getElementById('chk'), prog = document.getElementById('prog'), done = document.getElementById('done');
+  var formTimer = null, formRun = 0;
+  function val(f){ return (lang === 'en' && f.getAttribute('data-ven')) || f.getAttribute('data-v'); }
+  function fillAll(){
+    fields.forEach(function(f){ f.textContent = val(f); });
+    chk.classList.add('on'); prog.style.width = '100%'; done.classList.add('on');
+  }
+  function restartForm(){
+    formRun++; clearTimeout(formTimer);
+    if (reduce){ fillAll(); return; }
+    var run = formRun;
+    fields.forEach(function(f){ f.textContent = ''; f.parentNode.classList.remove('on'); });
+    chk.classList.remove('on'); prog.style.width = '0'; done.classList.remove('on');
+    var fi = 0, ci = 0;
+    function step(){
+      if (run !== formRun) return;
+      if (fi < fields.length){
+        var f = fields[fi], v = val(f);
+        f.parentNode.classList.add('on');
+        if (ci < v.length){ f.textContent = v.slice(0, ++ci); formTimer = setTimeout(step, 55 + Math.random()*60); }
+        else { f.parentNode.classList.remove('on'); fi++; ci = 0; prog.style.width = Math.round(fi / (fields.length+1) * 100) + '%'; formTimer = setTimeout(step, 380); }
+      } else if (!chk.classList.contains('on')){
+        chk.classList.add('on'); prog.style.width = '100%'; formTimer = setTimeout(step, 500);
+      } else {
+        done.classList.add('on'); formTimer = setTimeout(restartForm, 4200);
+      }
+    }
+    formTimer = setTimeout(step, 600);
+  }
+
+  /* ---- conversación con el agente de IA ---- */
+  var convo = {
+    es: [
+      ['c','Hola, ¿pueden ayudarme a notarizar un poder esta semana?'],
+      ['a','¡Con gusto! Un notario aliado tiene disponible el jueves a las 10:00 a. m. o el viernes a las 3:00 p. m. ¿Cuál prefiere?'],
+      ['c','El jueves, por favor.'],
+      ['a','Listo, su cita quedó confirmada para el jueves a las 10:00 a. m. Le envié la lista de documentos que debe traer. Recuerde llevar su identificación con foto.'],
+      ['s','Cita registrada en la agenda · Recordatorio programado']
+    ],
+    en: [
+      ['c','Hi, can you help me notarize a power of attorney this week?'],
+      ['a','Happy to help! A partner notary is available Thursday at 10:00 a.m. or Friday at 3:00 p.m. Which do you prefer?'],
+      ['c','Thursday, please.'],
+      ['a','Done. Your appointment is confirmed for Thursday at 10:00 a.m. I sent you the list of documents to bring. Remember your photo ID.'],
+      ['s','Appointment saved to the calendar · Reminder scheduled']
+    ]
+  };
+  var box = document.getElementById('msgs'), chatTimer = null, chatRun = 0;
+  function add(kind, text){
+    var d = document.createElement('div');
+    d.className = 'msg ' + (kind === 's' ? 'sys' : kind);
+    d.textContent = text; box.appendChild(d);
+    while (box.children.length > 6) box.removeChild(box.firstChild);
+  }
+  function restartChat(){
+    chatRun++; clearTimeout(chatTimer); box.innerHTML = '';
+    var list = convo[lang];
+    if (reduce){ list.forEach(function(m){ add(m[0], m[1]); }); return; }
+    var run = chatRun, i = 0;
+    function next(){
+      if (run !== chatRun) return;
+      if (i >= list.length){ chatTimer = setTimeout(restartChat, 5000); return; }
+      var m = list[i];
+      if (m[0] === 'a'){
+        var t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>'; box.appendChild(t);
+        chatTimer = setTimeout(function(){ if (run !== chatRun) return; t.remove(); add(m[0], m[1]); i++; chatTimer = setTimeout(next, 1400); }, 1300);
+      } else { add(m[0], m[1]); i++; chatTimer = setTimeout(next, m[0] === 's' ? 1200 : 1100); }
+    }
+    /* primer cuadro completo: muestra el primer mensaje de inmediato */
+    add(list[0][0], list[0][1]); i = 1;
+    chatTimer = setTimeout(next, 900);
+  }
+
+  /* ---- contador y gráficos al entrar en pantalla ---- */
+  var dash = document.getElementById('dash');
+  function countUp(){
+    [].forEach.call(dash.querySelectorAll('[data-count]'), function(el){
+      var end = +el.getAttribute('data-count'), t0 = null;
+      function f(ts){ if(!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1400); el.textContent = Math.round(end * (1 - Math.pow(1-p, 3))).toLocaleString('en-US'); if (p < 1) requestAnimationFrame(f); }
+      requestAnimationFrame(f);
+    });
+  }
+  if (!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if (e.isIntersecting){ dash.classList.add('go'); countUp(); io.disconnect(); } });
+    }, {threshold: .35});
+    io.observe(dash);
+  }
+
+  restartForm(); restartChat();
+})();
+</script>
+
+</body>
+</html>
